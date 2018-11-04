@@ -29,19 +29,19 @@ import uiuc
 # @return -> None 
 def cloneDB(conn, dbname):
 
-	client = MongoClient(conn)						                                                  # Connect to MongoDB instance
+	client = MongoClient(conn)                                                                        # Connect to MongoDB instance
 	db = client[dbname]                                                                               # Create/use the Aerofoils database
 
-	index = uiuc.requestAirfoilIndex()																  # GET dictionary {letter: [airfoil-codes]} for all airfoils in UIUC online DB
+	index = uiuc.requestAirfoilIndex()                                                                # GET dictionary {letter: [airfoil-codes]} for all airfoils in UIUC online DB
 	key_list = " | ".join(list(index.keys()))
 
-	for key in index.keys():																		  # Loop through alphabetic keys of @index dictionary
+	for key in index.keys():                                                                          # Loop through alphabetic keys of @index dictionary
 		print("CURRENT KEY: ", key, " of ", key_list, "\n")
 		n = len(index[key])
 		i = 1
-		for code in index[key]:																		  # Loop through all airfoil codes starting with @key
-			doc = uiuc.requestAirfoilCoordinates(code)												  # GET x,y coordinates of airfoil
-			db[key].insert_one(doc)																	  # Insert x,y coordinates into MongoDB
+		for code in index[key]:                                                                   # Loop through all airfoil codes starting with @key
+			doc = uiuc.requestAirfoilCoordinates(code)                                        # GET x,y coordinates of airfoil
+			db[key].insert_one(doc)                                                           # Insert x,y coordinates into MongoDB
 			print("SUCCESSFULLY STORED ", code, " to MongoDB...", 
 				  "(" + str(i) + "/" + str(n) + ")")
 			i += 1
