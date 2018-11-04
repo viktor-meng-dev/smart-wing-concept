@@ -1,0 +1,16 @@
+axes.titlesize : 60
+axes.labelsize : 35
+axes.labelweight : bold
+# axes.edgecolor : k
+
+lines.linewidth : 3
+lines.markersize : 10
+
+xtick.labelsize : 20
+# xtick.color : k
+
+ytick.labelsize : 20
+# ytick.color : k
+
+
+
